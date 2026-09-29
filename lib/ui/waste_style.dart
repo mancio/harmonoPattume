@@ -17,6 +17,7 @@ String wasteLabel(AppLocalizations l10n, WasteType type) => switch (type.kind) {
   WasteKind.tree => l10n.wasteTree,
   WasteKind.textile => l10n.wasteTextile,
   WasteKind.metal => l10n.wasteMetal,
+  WasteKind.leaves => l10n.wasteLeaves,
   WasteKind.other => type.name,
 };
 
@@ -54,6 +55,7 @@ Color wasteColor(WasteKind kind) => switch (kind) {
   WasteKind.plastics || WasteKind.metal => const Color(0xFFFBC02D),
   WasteKind.glass => const Color(0xFF43A047),
   WasteKind.garden || WasteKind.tree => const Color(0xFF689F38),
+  WasteKind.leaves => const Color(0xFFE08E2B),
   WasteKind.hazardous => const Color(0xFFE53935),
   WasteKind.ewaste => const Color(0xFF8E24AA),
   WasteKind.bulky ||
@@ -74,14 +76,21 @@ IconData wasteIcon(WasteKind kind) => switch (kind) {
   WasteKind.tree => Icons.park_outlined,
   WasteKind.textile => Icons.checkroom_outlined,
   WasteKind.metal => Icons.hardware_outlined,
+  WasteKind.leaves => Icons.energy_savings_leaf_outlined,
   WasteKind.other => Icons.recycling,
 };
 
 class WasteChip extends StatelessWidget {
-  const WasteChip({super.key, required this.type, required this.label});
+  const WasteChip({
+    super.key,
+    required this.type,
+    required this.label,
+    this.onTap,
+  });
 
   final WasteType type;
   final String label;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +99,8 @@ class WasteChip extends StatelessWidget {
         ThemeData.estimateBrightnessForColor(color) == Brightness.dark
         ? Colors.white
         : Colors.black87;
-    return Chip(
+    return ActionChip(
+      onPressed: onTap,
       avatar: Icon(wasteIcon(type.kind), size: 18, color: onColor),
       label: Text(label),
       labelStyle: TextStyle(color: onColor),

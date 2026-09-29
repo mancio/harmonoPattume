@@ -17,6 +17,7 @@ enum WasteKind {
   tree,
   textile,
   metal,
+  leaves,
   other,
 }
 

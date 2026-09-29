@@ -159,4 +159,10 @@ void main() {
     ];
     expect(primaryTypeIds(events), {'b'});
   });
+
+  test('seasonal campaigns are recognised by name', () {
+    expect(KiedyOdpadySource.kindFor('bio', 'Akcja Liść'), WasteKind.leaves);
+    expect(KiedyOdpadySource.kindFor('bio', 'Bioodpady'), WasteKind.bio);
+    expect(KiedyOdpadySource.kindFor(null, 'Choinki'), WasteKind.tree);
+  });
 }

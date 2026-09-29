@@ -91,7 +91,10 @@ class KiedyOdpadySource implements ScheduleSource {
           item['id'] as String: WasteType(
             id: item['id'] as String,
             name: (item['name'] ?? item['id']) as String,
-            kind: kindForIcon(item['icon'] as String?),
+            kind: kindFor(
+              item['icon'] as String?,
+              (item['name'] ?? '') as String,
+            ),
           ),
     };
     return _wasteTypes[municipality] = types;
@@ -143,6 +146,16 @@ class KiedyOdpadySource implements ScheduleSource {
       '${d.year.toString().padLeft(4, '0')}-'
       '${d.month.toString().padLeft(2, '0')}-'
       '${d.day.toString().padLeft(2, '0')}';
+
+  /// Maps a waste type to a [WasteKind]. Seasonal campaigns share an icon
+  /// with a regular category (e.g. "Akcja Liść" uses the bio icon), so they
+  /// are recognised by name first.
+  static WasteKind kindFor(String? icon, String name) {
+    final folded = foldForSearch(name);
+    if (folded.contains('lisc')) return WasteKind.leaves;
+    if (folded.contains('choink')) return WasteKind.tree;
+    return kindForIcon(icon);
+  }
 
   /// Maps the platform's icon slug to a [WasteKind].
   static WasteKind kindForIcon(String? icon) => switch (icon) {

@@ -7,6 +7,7 @@ import '../services/reminders.dart';
 import '../services/settings_store.dart';
 import '../sources/schedule_source.dart';
 import 'settings_screen.dart';
+import 'waste_info_screen.dart';
 import 'waste_style.dart';
 
 /// Upcoming collections for the saved address, one card per day.
@@ -178,6 +179,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                   date: day.key,
                   types: day.value,
                   primaryIds: primaryIds,
+                  events: snapshot.data!,
                 );
               },
             );
@@ -193,11 +195,29 @@ class _DayCard extends StatelessWidget {
     required this.date,
     required this.types,
     required this.primaryIds,
+    required this.events,
   });
 
   final DateTime date;
   final List<WasteType> types;
   final Set<String> primaryIds;
+  final List<CollectionEvent> events;
+
+  void _openInfo(BuildContext context, WasteType type) {
+    final l10n = AppLocalizations.of(context);
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => WasteInfoScreen(
+          type: type,
+          label: wasteLabelIn(l10n, type, primaryIds),
+          upcoming: [
+            for (final e in events)
+              if (e.wasteType.id == type.id && !e.date.isBefore(date)) e.date,
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -229,7 +249,11 @@ class _DayCard extends StatelessWidget {
               runSpacing: 4,
               children: [
                 for (final t in types)
-                  WasteChip(type: t, label: wasteLabelIn(l10n, t, primaryIds)),
+                  WasteChip(
+                    type: t,
+                    label: wasteLabelIn(l10n, t, primaryIds),
+                    onTap: () => _openInfo(context, t),
+                  ),
               ],
             ),
           ],
