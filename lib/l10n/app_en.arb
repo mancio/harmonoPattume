@@ -37,5 +37,8 @@
   "wasteGarden": "Garden waste",
   "wasteTree": "Christmas trees",
   "wasteTextile": "Textiles",
-  "wasteMetal": "Metal"
+  "wasteMetal": "Metal",
+  "welcomeTitle": "Welcome!",
+  "welcomeSubtitle": "Your waste collection schedule, always at hand",
+  "welcomeTagline": "Never miss a pickup again 🗑️"
 }

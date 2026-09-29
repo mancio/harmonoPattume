@@ -37,5 +37,8 @@
   "wasteGarden": "Sfalci e potature",
   "wasteTree": "Alberi di Natale",
   "wasteTextile": "Tessili",
-  "wasteMetal": "Metalli"
+  "wasteMetal": "Metalli",
+  "welcomeTitle": "Benvenuto!",
+  "welcomeSubtitle": "Il calendario della raccolta rifiuti, sempre con te",
+  "welcomeTagline": "Non perderai mai più un ritiro 🗑️"
 }

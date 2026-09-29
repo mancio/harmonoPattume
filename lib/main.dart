@@ -6,6 +6,7 @@ import 'services/reminders.dart';
 import 'services/settings_store.dart';
 import 'ui/address_setup_screen.dart';
 import 'ui/schedule_screen.dart';
+import 'ui/welcome_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,10 +15,19 @@ Future<void> main() async {
   runApp(HarmonoPattumeApp(settings: settings));
 }
 
-class HarmonoPattumeApp extends StatelessWidget {
+class HarmonoPattumeApp extends StatefulWidget {
   const HarmonoPattumeApp({super.key, required this.settings});
 
   final SettingsStore settings;
+
+  @override
+  State<HarmonoPattumeApp> createState() => _HarmonoPattumeAppState();
+}
+
+class _HarmonoPattumeAppState extends State<HarmonoPattumeApp> {
+  bool _welcomeDone = false;
+
+  SettingsStore get settings => widget.settings;
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +48,18 @@ class HarmonoPattumeApp extends StatelessWidget {
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        home: settings.address == null
-            ? AddressSetupScreen(settings: settings)
-            : ScheduleScreen(settings: settings),
+        home: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 500),
+          child: !_welcomeDone
+              ? WelcomeScreen(
+                  onDone: () => setState(() {
+                    _welcomeDone = true;
+                  }),
+                )
+              : settings.address == null
+              ? AddressSetupScreen(settings: settings)
+              : ScheduleScreen(settings: settings),
+        ),
       ),
     );
   }

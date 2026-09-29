@@ -37,5 +37,8 @@
   "wasteGarden": "Odpady zielone",
   "wasteTree": "Choinki",
   "wasteTextile": "Tekstylia",
-  "wasteMetal": "Metale"
+  "wasteMetal": "Metale",
+  "welcomeTitle": "Witaj!",
+  "welcomeSubtitle": "Twój harmonogram wywozu odpadów, zawsze pod ręką",
+  "welcomeTagline": "Już nigdy nie przegapisz odbioru 🗑️"
 }
