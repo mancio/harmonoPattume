@@ -72,6 +72,23 @@ const _polishLetters = {
 String polishSortKey(String name) =>
     name.toLowerCase().split('').map((c) => _polishLetters[c] ?? c).join();
 
+const _plainLetters = {
+  'ą': 'a',
+  'ć': 'c',
+  'ę': 'e',
+  'ł': 'l',
+  'ń': 'n',
+  'ó': 'o',
+  'ś': 's',
+  'ź': 'z',
+  'ż': 'z',
+};
+
+/// Lowercase text without Polish diacritics, so searching "sledz" finds
+/// "Śledziejowice" on keyboards without Polish letters.
+String foldForSearch(String text) =>
+    text.toLowerCase().split('').map((c) => _plainLetters[c] ?? c).join();
+
 class ScheduleSourceException implements Exception {
   ScheduleSourceException(this.message);
 

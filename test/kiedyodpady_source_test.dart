@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:harmono_pattume/models/collection.dart';
 import 'package:harmono_pattume/services/reminders.dart';
 import 'package:harmono_pattume/sources/kiedyodpady_source.dart';
+import 'package:harmono_pattume/sources/schedule_source.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 
@@ -136,5 +137,13 @@ void main() {
     final copy = SavedAddress.fromJson(_address.toJson());
     expect(copy.toJson(), _address.toJson());
     expect(copy.label, 'Śledziejowice, Śledziejowice, 558');
+  });
+
+  test('search ignores Polish diacritics and case', () {
+    expect(
+      foldForSearch('Śledziejowice').contains(foldForSearch('sledz')),
+      isTrue,
+    );
+    expect(foldForSearch('ŁĄKA Żółta'), 'laka zolta');
   });
 }

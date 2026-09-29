@@ -271,9 +271,9 @@ class _SearchListState extends State<_SearchList> {
 
   @override
   Widget build(BuildContext context) {
-    final q = _query.toLowerCase();
+    final q = foldForSearch(_query.trim());
     final shown = widget.options
-        .where((o) => o.name.toLowerCase().contains(q))
+        .where((o) => foldForSearch(o.name).contains(q))
         .toList();
     return SafeArea(
       child: SizedBox(
