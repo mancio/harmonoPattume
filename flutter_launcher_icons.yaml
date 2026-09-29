@@ -1,0 +1,15 @@
+# Regenerate with: dart run flutter_launcher_icons
+# After regenerating, revert the change it makes to ios/Runner.xcodeproj/project.pbxproj
+# (it wrongly rewrites ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS).
+# Source artwork: assets/icon/icon.svg (the guy, the torn bag and the
+# Wieliczka Salt Mine), rendered to the PNGs below.
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: assets/icon/icon.png
+  remove_alpha_ios: true
+  min_sdk_android: 21
+  adaptive_icon_background: assets/icon/adaptive_background.png
+  adaptive_icon_foreground: assets/icon/adaptive_foreground.png
+  # The foreground PNG already keeps the characters inside the safe zone.
+  adaptive_icon_foreground_inset: 0

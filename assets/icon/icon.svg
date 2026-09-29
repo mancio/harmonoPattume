@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#BFE3FF"/>
+      <stop offset="1" stop-color="#EAF6FF"/>
+    </linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7BD389"/>
+      <stop offset="1" stop-color="#2E8B57"/>
+    </linearGradient>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6F7A82"/>
+      <stop offset="0.35" stop-color="#E9EEF1"/>
+      <stop offset="0.55" stop-color="#B9C2C8"/>
+      <stop offset="1" stop-color="#5E676E"/>
+    </linearGradient>
+    <linearGradient id="rim" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7F8A91"/>
+      <stop offset="0.4" stop-color="#F4F7F9"/>
+      <stop offset="1" stop-color="#6A747B"/>
+    </linearGradient>
+    <radialGradient id="bag" cx="0.35" cy="0.3" r="0.8">
+      <stop offset="0" stop-color="#5A5F66"/>
+      <stop offset="1" stop-color="#1E2227"/>
+    </radialGradient>
+  </defs>
+
+  <!-- background -->
+  <clipPath id="clip"><rect width="512" height="512" rx="112"/></clipPath>
+  <g clip-path="url(#clip)">
+    <rect width="512" height="512" fill="url(#sky)"/>
+    <!-- Wieliczka Salt Mine: shaft headframe with its pulley wheels -->
+    <g fill="none" stroke="#6E7F99" stroke-width="7" stroke-linejoin="round" opacity="0.9">
+      <path d="M196 330 L232 96 L268 330"/>
+      <path d="M232 96 L300 330"/>
+      <path d="M206 262 L258 262 M214 200 L250 200 M222 144 L243 144"/>
+      <path d="M206 262 L250 200 M258 262 L214 200 M214 200 L243 144 M250 200 L222 144"/>
+    </g>
+    <circle cx="232" cy="92" r="26" fill="none" stroke="#6E7F99" stroke-width="7" opacity="0.9"/>
+    <path d="M232 66 L232 118 M206 92 L258 92 M214 74 L250 110 M250 74 L214 110" stroke="#6E7F99" stroke-width="4" opacity="0.9"/>
+    <!-- shaft house with salt-mine roof -->
+    <path d="M40 330 L40 250 L100 212 L160 250 L160 330 Z" fill="#8FA3BF"/>
+    <rect x="70" y="262" width="18" height="24" fill="#E7EEF7"/>
+    <rect x="112" y="262" width="18" height="24" fill="#E7EEF7"/>
+    <!-- Saltworks Castle tower -->
+    <path d="M400 330 L400 180 L392 180 L392 164 L452 164 L452 180 L444 180 L444 330 Z" fill="#8FA3BF"/>
+    <path d="M392 164 L422 120 L452 164 Z" fill="#B0584A"/>
+    <path d="M444 330 L444 238 L500 238 L500 330 Z" fill="#9CB0CA"/>
+    <path d="M440 238 L472 206 L504 238 Z" fill="#B0584A"/>
+    <rect x="414" y="196" width="16" height="22" rx="8" fill="#E7EEF7"/>
+    <!-- hills -->
+    <path d="M0 320 Q120 270 250 316 Q380 360 512 300 L512 512 L0 512 Z" fill="url(#bg)"/>
+    <ellipse cx="256" cy="452" rx="210" ry="22" fill="#256F46" opacity="0.55"/>
+  </g>
+
+  <!-- bin -->
+  <path d="M292 262 L438 262 L424 430 Q423 446 407 446 L323 446 Q307 446 306 430 Z" fill="url(#metal)" stroke="#3E474D" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M322 282 L328 428 M352 282 L354 430 M378 282 L376 430 M406 282 L400 428" stroke="#5E676E" stroke-width="5" stroke-linecap="round" opacity="0.55"/>
+  <ellipse cx="365" cy="262" rx="82" ry="20" fill="url(#rim)" stroke="#3E474D" stroke-width="5"/>
+  <ellipse cx="365" cy="263" rx="64" ry="11" fill="#2B3035"/>
+
+  <!-- motion lines from the throw -->
+  <path d="M170 150 Q205 105 245 100 M160 172 Q200 130 238 124" stroke="#4A6FA5" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.7"/>
+
+  <!-- the bag, torn at the bottom -->
+  <g transform="rotate(18 300 140)">
+    <path d="M300 78 L290 58 L304 66 L312 50 L316 70 L330 62 L318 84 Z" fill="#1E2227"/>
+    <path d="M300 84 Q250 92 246 142 Q244 176 262 188 L270 176 L280 192 L290 178 L300 196 L310 178 L322 192 L330 176 L340 186 Q356 170 352 138 Q348 92 316 84 Z" fill="url(#bag)" stroke="#111" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M268 118 Q272 104 286 100" stroke="#8A9098" stroke-width="5" stroke-linecap="round" fill="none"/>
+  </g>
+
+  <!-- trash falling out of the tear -->
+  <!-- banana peel -->
+  <g transform="translate(262 238) rotate(-20)">
+    <path d="M0 0 Q-16 -4 -22 10 M0 0 Q2 16 -8 26 M0 0 Q16 6 18 22" stroke="#F4C430" stroke-width="9" stroke-linecap="round" fill="none"/>
+    <circle cx="0" cy="-2" r="6" fill="#8B5A2B"/>
+  </g>
+  <!-- soda can -->
+  <g transform="translate(318 218) rotate(35)">
+    <rect x="-10" y="-17" width="20" height="34" rx="4" fill="#E53935" stroke="#7F1D1D" stroke-width="3"/>
+    <rect x="-10" y="-4" width="20" height="7" fill="#FFFFFF"/>
+  </g>
+  <!-- crumpled paper -->
+  <path d="M212 262 L226 250 L240 258 L246 272 L234 284 L218 280 Z" fill="#FFFFFF" stroke="#9AA3A9" stroke-width="3" stroke-linejoin="round"/>
+  <!-- fish bone -->
+  <g transform="translate(284 290) rotate(-10)" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none">
+    <path d="M-18 0 L14 0 M-10 -8 L-6 8 M-2 -8 L2 8 M6 -8 L10 8"/>
+    <path d="M14 0 L24 -8 L24 8 Z" fill="#FFFFFF"/>
+  </g>
+  <!-- apple core on the ground -->
+  <g transform="translate(250 430)">
+    <path d="M-10 -14 Q0 -8 10 -14 Q4 0 10 14 Q0 8 -10 14 Q-4 0 -10 -14 Z" fill="#FFF3D6" stroke="#C0392B" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M0 -14 L2 -24" stroke="#6D4C41" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <!-- little splat marks -->
+  <path d="M232 214 l-8 -8 M246 206 l-2 -12 M226 230 l-12 -2" stroke="#4A6FA5" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- the guy -->
+  <!-- legs -->
+  <path d="M128 330 L108 420 M160 330 L174 420" stroke="#2F5DA8" stroke-width="22" stroke-linecap="round"/>
+  <ellipse cx="100" cy="426" rx="22" ry="11" fill="#3B2A20"/>
+  <ellipse cx="184" cy="426" rx="22" ry="11" fill="#3B2A20"/>
+  <!-- body -->
+  <path d="M112 246 Q144 232 178 248 L172 340 Q144 350 116 340 Z" fill="#FF7A45" stroke="#B4471F" stroke-width="4" stroke-linejoin="round"/>
+  <!-- arms up after the throw -->
+  <path d="M170 256 Q196 214 212 176" stroke="#FF7A45" stroke-width="20" stroke-linecap="round" fill="none"/>
+  <path d="M118 258 Q100 214 116 178" stroke="#FF7A45" stroke-width="20" stroke-linecap="round" fill="none"/>
+  <circle cx="214" cy="170" r="13" fill="#F5C29B"/>
+  <circle cx="116" cy="172" r="13" fill="#F5C29B"/>
+  <!-- head -->
+  <circle cx="146" cy="206" r="40" fill="#F5C29B" stroke="#C98E66" stroke-width="3"/>
+  <path d="M112 190 Q118 160 150 164 Q178 166 184 194 Q168 178 150 184 Q132 176 112 190 Z" fill="#5B3A24"/>
+  <!-- surprised face: big eyes and an O mouth -->
+  <circle cx="134" cy="204" r="9" fill="#FFFFFF" stroke="#333" stroke-width="2"/>
+  <circle cx="160" cy="204" r="9" fill="#FFFFFF" stroke="#333" stroke-width="2"/>
+  <circle cx="137" cy="203" r="4" fill="#222"/>
+  <circle cx="163" cy="203" r="4" fill="#222"/>
+  <ellipse cx="148" cy="228" rx="7" ry="9" fill="#7A2E1E"/>
+  <!-- sweat drop -->
+  <path d="M96 186 Q90 198 96 204 Q102 198 96 186 Z" fill="#7FD3FF" stroke="#2B8CC4" stroke-width="2"/>
+</svg>

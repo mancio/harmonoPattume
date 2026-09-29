@@ -96,7 +96,16 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
     final address = widget.settings.address!;
     return Scaffold(
       appBar: AppBar(
-        title: Text(l10n.appTitle),
+        title: Row(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.asset('assets/icon/icon_round.png', width: 36),
+            ),
+            const SizedBox(width: 12),
+            Text(l10n.appTitle),
+          ],
+        ),
         actions: [
           IconButton(
             tooltip: l10n.settings,
