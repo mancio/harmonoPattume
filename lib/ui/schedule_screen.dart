@@ -85,7 +85,9 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
       _loaded = events;
       if (mounted) _reschedule(events);
     }, onError: (_) {});
-    setState(() => _events = future);
+    setState(() {
+      _events = future;
+    });
   }
 
   @override
