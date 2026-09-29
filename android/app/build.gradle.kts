@@ -40,13 +40,23 @@ android {
             keyAlias = "androiddebugkey"
             keyPassword = "android"
         }
+        // Release key comes from the environment (CI secrets). Without it,
+        // release builds fall back to the debug key so local builds still work.
+        val releaseStore = System.getenv("ANDROID_KEYSTORE_PATH")
+        if (releaseStore != null && file(releaseStore).exists()) {
+            create("release") {
+                storeFile = file(releaseStore)
+                storePassword = System.getenv("ANDROID_KEYSTORE_PASSWORD")
+                keyAlias = System.getenv("ANDROID_KEY_ALIAS")
+                keyPassword = System.getenv("ANDROID_KEY_PASSWORD")
+            }
+        }
     }
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig =
+                signingConfigs.findByName("release") ?: signingConfigs.getByName("debug")
         }
     }
 }

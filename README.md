@@ -2,6 +2,20 @@
 
 Trash collection schedule (harmonogram wywozu odpadów) for Polish municipalities, in Italian, Polish and English. Built with Flutter: Android first, iOS-ready.
 
+## Download (Android)
+
+**[⬇ Download HarmonoPattume for Android](https://github.com/mancio/harmonoPattume/releases/latest/download/harmonopattume.apk)** (about 10 MB, signed release)
+
+Old 32-bit phones: [harmonopattume-armv7.apk](https://github.com/mancio/harmonoPattume/releases/latest/download/harmonopattume-armv7.apk). All builds: [Releases](https://github.com/mancio/harmonoPattume/releases).
+
+The app is not on Google Play yet, so Android asks a few questions the first time:
+
+1. Open the downloaded file. If Android says installing from this source isn't allowed, tap **Settings → Allow from this source** (this is asked only once for the browser or file manager you use).
+2. Tap **Install**.
+3. If Play Protect shows "App scan recommended" or "Unrecognized app", tap **Scan app** or **Install anyway**.
+
+Later versions install over the old one and keep your address and settings. If you had installed a test (debug) build before, uninstall it once first.
+
 ## What it does
 
 - Pick your address (municipality, locality, street, house number) with the same names the municipality's own site uses.
