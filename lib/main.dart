@@ -48,17 +48,23 @@ class _HarmonoPattumeAppState extends State<HarmonoPattumeApp> {
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        home: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 500),
-          child: !_welcomeDone
-              ? WelcomeScreen(
-                  onDone: () => setState(() {
-                    _welcomeDone = true;
-                  }),
-                )
-              : settings.address == null
-              ? AddressSetupScreen(settings: settings)
-              : ScheduleScreen(settings: settings),
+        // The backdrop keeps the cross-fade from showing black in between.
+        home: Builder(
+          builder: (context) => ColoredBox(
+            color: Theme.of(context).colorScheme.surface,
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 500),
+              child: !_welcomeDone
+                  ? WelcomeScreen(
+                      onDone: () => setState(() {
+                        _welcomeDone = true;
+                      }),
+                    )
+                  : settings.address == null
+                  ? AddressSetupScreen(settings: settings)
+                  : ScheduleScreen(settings: settings),
+            ),
+          ),
         ),
       ),
     );
