@@ -149,6 +149,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
               );
             }
             final days = groupByDay(snapshot.data!).entries.toList();
+            final primaryIds = primaryTypeIds(snapshot.data!);
             return ListView.builder(
               itemCount: days.length + 2,
               itemBuilder: (context, i) {
@@ -164,7 +165,11 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                   );
                 }
                 final day = days[i - 1];
-                return _DayCard(date: day.key, types: day.value);
+                return _DayCard(
+                  date: day.key,
+                  types: day.value,
+                  primaryIds: primaryIds,
+                );
               },
             );
           },
@@ -175,10 +180,15 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
 }
 
 class _DayCard extends StatelessWidget {
-  const _DayCard({required this.date, required this.types});
+  const _DayCard({
+    required this.date,
+    required this.types,
+    required this.primaryIds,
+  });
 
   final DateTime date;
   final List<WasteType> types;
+  final Set<String> primaryIds;
 
   @override
   Widget build(BuildContext context) {
@@ -208,7 +218,10 @@ class _DayCard extends StatelessWidget {
             Wrap(
               spacing: 8,
               runSpacing: 4,
-              children: [for (final t in types) WasteChip(type: t)],
+              children: [
+                for (final t in types)
+                  WasteChip(type: t, label: wasteLabelIn(l10n, t, primaryIds)),
+              ],
             ),
           ],
         ),

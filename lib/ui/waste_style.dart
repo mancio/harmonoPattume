@@ -20,6 +20,32 @@ String wasteLabel(AppLocalizations l10n, WasteType type) => switch (type.kind) {
   WasteKind.other => type.name,
 };
 
+/// Ids of the types that get the localized category name: for each
+/// category, the type collected most often. Rarer types of the same category
+/// (e.g. "Akcja Liść" next to "Bioodpady") keep the source's own name, so
+/// they don't read as duplicates.
+Set<String> primaryTypeIds(List<CollectionEvent> events) {
+  final counts = <String, int>{};
+  final byId = <String, WasteType>{};
+  for (final e in events) {
+    counts.update(e.wasteType.id, (c) => c + 1, ifAbsent: () => 1);
+    byId[e.wasteType.id] = e.wasteType;
+  }
+  final best = <WasteKind, String>{};
+  for (final id in counts.keys) {
+    final kind = byId[id]!.kind;
+    final current = best[kind];
+    if (current == null || counts[id]! > counts[current]!) best[kind] = id;
+  }
+  return best.values.toSet();
+}
+
+String wasteLabelIn(
+  AppLocalizations l10n,
+  WasteType type,
+  Set<String> primaryIds,
+) => primaryIds.contains(type.id) ? wasteLabel(l10n, type) : type.name;
+
 /// Bin colours follow the Polish national sorting scheme (JSSO).
 Color wasteColor(WasteKind kind) => switch (kind) {
   WasteKind.mixed => const Color(0xFF424242),
@@ -52,9 +78,10 @@ IconData wasteIcon(WasteKind kind) => switch (kind) {
 };
 
 class WasteChip extends StatelessWidget {
-  const WasteChip({super.key, required this.type});
+  const WasteChip({super.key, required this.type, required this.label});
 
   final WasteType type;
+  final String label;
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +92,7 @@ class WasteChip extends StatelessWidget {
         : Colors.black87;
     return Chip(
       avatar: Icon(wasteIcon(type.kind), size: 18, color: onColor),
-      label: Text(wasteLabel(AppLocalizations.of(context), type)),
+      label: Text(label),
       labelStyle: TextStyle(color: onColor),
       backgroundColor: color,
       side: BorderSide.none,

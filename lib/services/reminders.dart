@@ -63,6 +63,7 @@ class Reminders {
     if (!enabled) return;
 
     final byDay = groupByDay(events);
+    final primaryIds = primaryTypeIds(events);
     final now = tz.TZDateTime.now(_warsaw);
     var id = 0;
     for (final entry in byDay.entries) {
@@ -80,7 +81,9 @@ class Reminders {
         id: id++,
         scheduledDate: at,
         title: l10n.reminderTitle,
-        body: entry.value.map((t) => wasteLabel(l10n, t)).join(', '),
+        body: entry.value
+            .map((t) => wasteLabelIn(l10n, t, primaryIds))
+            .join(', '),
         notificationDetails: NotificationDetails(
           android: AndroidNotificationDetails(
             'collections',

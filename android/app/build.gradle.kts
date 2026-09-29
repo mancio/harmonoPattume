@@ -31,6 +31,17 @@ android {
         versionName = flutter.versionName
     }
 
+    signingConfigs {
+        // Committed debug key (public, not secret) so every CI build is signed
+        // the same way and can be installed over the previous one.
+        getByName("debug") {
+            storeFile = file("debug.keystore")
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+        }
+    }
+
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.

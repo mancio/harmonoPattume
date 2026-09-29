@@ -5,6 +5,7 @@ import 'package:harmono_pattume/models/collection.dart';
 import 'package:harmono_pattume/services/reminders.dart';
 import 'package:harmono_pattume/sources/kiedyodpady_source.dart';
 import 'package:harmono_pattume/sources/schedule_source.dart';
+import 'package:harmono_pattume/ui/waste_style.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 
@@ -145,5 +146,17 @@ void main() {
       isTrue,
     );
     expect(foldForSearch('ŁĄKA Żółta'), 'laka zolta');
+  });
+
+  test('rarer type of a shared category keeps its own name', () {
+    const bio = WasteType(id: 'b', name: 'Bioodpady', kind: WasteKind.bio);
+    const leaves = WasteType(id: 'l', name: 'Akcja Liść', kind: WasteKind.bio);
+    final events = [
+      CollectionEvent(date: DateTime(2026, 10, 12), wasteType: bio),
+      CollectionEvent(date: DateTime(2026, 10, 26), wasteType: bio),
+      CollectionEvent(date: DateTime(2026, 11, 9), wasteType: bio),
+      CollectionEvent(date: DateTime(2026, 11, 9), wasteType: leaves),
+    ];
+    expect(primaryTypeIds(events), {'b'});
   });
 }
