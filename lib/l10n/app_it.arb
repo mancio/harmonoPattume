@@ -88,5 +88,9 @@
   "infoLeavesNo": "Rami grandi e tronchi\nTerra e sassi\nScarti di cucina\nPlastica o altri rifiuti nei sacchi",
   "infoOther": "Una raccolta speciale decisa dal comune. Controlla il sito del comune per i dettagli su cosa viene ritirato.",
   "infoOtherYes": "",
-  "infoOtherNo": ""
+  "infoOtherNo": "",
+  "addToCalendar": "Aggiungi al calendario",
+  "calendarEventTitle": "Raccolta rifiuti: {types}",
+  "calendarEventDescription": "Porta fuori i contenitori per la raccolta. Aggiunto da HarmonoPattume.",
+  "calendarUnavailable": "Nessuna app calendario trovata sul telefono."
 }

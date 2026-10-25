@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 
 import '../l10n/gen/app_localizations.dart';
 import '../models/collection.dart';
+import '../services/calendar_export.dart';
 import '../services/reminders.dart';
 import '../services/settings_store.dart';
 import '../sources/schedule_source.dart';
@@ -180,6 +181,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                   types: day.value,
                   primaryIds: primaryIds,
                   events: snapshot.data!,
+                  address: address.label,
                 );
               },
             );
@@ -196,12 +198,28 @@ class _DayCard extends StatelessWidget {
     required this.types,
     required this.primaryIds,
     required this.events,
+    required this.address,
   });
 
   final DateTime date;
   final List<WasteType> types;
   final Set<String> primaryIds;
   final List<CollectionEvent> events;
+  final String address;
+
+  Future<void> _addToCalendar(BuildContext context) async {
+    final l10n = AppLocalizations.of(context);
+    final messenger = ScaffoldMessenger.of(context);
+    final added = await addCollectionDayToCalendar(
+      date: date,
+      labels: [for (final t in types) wasteLabelIn(l10n, t, primaryIds)],
+      address: address,
+      l10n: l10n,
+    );
+    if (!added) {
+      messenger.showSnackBar(SnackBar(content: Text(l10n.calendarUnavailable)));
+    }
+  }
 
   void _openInfo(BuildContext context, WasteType type) {
     final l10n = AppLocalizations.of(context);
@@ -235,26 +253,38 @@ class _DayCard extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
       color: diff <= 1 ? Theme.of(context).colorScheme.primaryContainer : null,
       child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Column(
+        padding: const EdgeInsets.fromLTRB(12, 12, 4, 12),
+        child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              relative == null ? formatted : '$relative · $formatted',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const SizedBox(height: 8),
-            Wrap(
-              spacing: 8,
-              runSpacing: 4,
-              children: [
-                for (final t in types)
-                  WasteChip(
-                    type: t,
-                    label: wasteLabelIn(l10n, t, primaryIds),
-                    onTap: () => _openInfo(context, t),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    relative == null ? formatted : '$relative · $formatted',
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
-              ],
+                  const SizedBox(height: 8),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 4,
+                    children: [
+                      for (final t in types)
+                        WasteChip(
+                          type: t,
+                          label: wasteLabelIn(l10n, t, primaryIds),
+                          onTap: () => _openInfo(context, t),
+                        ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            IconButton(
+              tooltip: l10n.addToCalendar,
+              icon: const Icon(Icons.edit_calendar_outlined),
+              onPressed: () => _addToCalendar(context),
             ),
           ],
         ),
