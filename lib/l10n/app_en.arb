@@ -95,5 +95,16 @@
   "infoLeavesNo": "Branches and logs\nSoil and stones\nKitchen waste\nPlastic or other rubbish in the bags",
   "infoOther": "A special collection set by the gmina. Check the gmina's website for the details of what is collected.",
   "infoOtherYes": "",
-  "infoOtherNo": ""
+  "infoOtherNo": "",
+  "addToCalendar": "Add to calendar",
+  "calendarEventTitle": "Waste collection: {types}",
+  "calendarEventDescription": "Put the bins out for collection. Added from HarmonoPattume.",
+  "calendarUnavailable": "No calendar app found on this phone.",
+  "@calendarEventTitle": {
+    "placeholders": {
+      "types": {
+        "type": "String"
+      }
+    }
+  }
 }

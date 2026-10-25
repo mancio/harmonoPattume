@@ -88,5 +88,9 @@
   "infoLeavesNo": "Duże gałęzie i pnie\nZiemia i kamienie\nOdpady kuchenne\nPlastik i inne śmieci w workach",
   "infoOther": "Specjalna zbiórka ustalona przez gminę. Szczegóły znajdziesz na stronie gminy.",
   "infoOtherYes": "",
-  "infoOtherNo": ""
+  "infoOtherNo": "",
+  "addToCalendar": "Dodaj do kalendarza",
+  "calendarEventTitle": "Wywóz odpadów: {types}",
+  "calendarEventDescription": "Wystaw pojemniki do odbioru. Dodano z HarmonoPattume.",
+  "calendarUnavailable": "Nie znaleziono aplikacji kalendarza na telefonie."
 }

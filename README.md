@@ -21,6 +21,7 @@ Later versions install over the old one and keep your address and settings. If y
 - Pick your address (municipality, locality, street, house number) with the same names the municipality's own site uses.
 - See upcoming collections grouped by day, coloured by waste type.
 - Get a notification the evening before each collection day (time configurable).
+- Add a collection day to Google Calendar (or the phone's calendar app) with one tap.
 - Switch language between Italiano, Polski and English, or follow the system.
 
 ## Supported municipalities
